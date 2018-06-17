@@ -34,7 +34,7 @@ class ProductController {
 
     async delete(product) {
         let response = await ProductModel.findOneAndDelete({
-            id: product.id
+            _id: product.id
         });
         return response;
     }

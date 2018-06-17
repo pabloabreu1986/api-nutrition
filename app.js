@@ -14,6 +14,7 @@ const { port } = require('./config/config');
 const mongoose = require('./utils/db/mongo/mongoose');
 
 var productsRouter = require('./api/routes/products');
+var recipessRouter = require('./api/routes/recipes');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(productsRouter);
+app.use(recipessRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

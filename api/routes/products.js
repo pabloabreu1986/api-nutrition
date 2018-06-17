@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var asyncMiddleware = require('./../middleware/async');
+const httpStatusCode = require('http-status-codes');
+
 
 /* CONTROLLERS */
 
@@ -19,22 +21,26 @@ router.get('/products', asyncMiddleware(async (req, res, next) => {
     });
 }));
 
-router.post('/products', asyncMiddleware(async (req, res, next) => {
-    let product = {
-        category: req.body.category,
-        name: req.body.name,
-        description: req.body.description,
-        amount: req.body.amount,
-        unit: req.body.unit,
-        calories: req.body.calories,
-        protein: req.body.protein,
-        carbs: req.body.carbs,
-        fats: req.body.fats,
-        sugar: req.body.sugar,
-        sodium: req.body.sodium
-    };
-    let newProduct = await productController.create(product);
-    res.json(newProduct);
+router.post('/products', asyncMiddleware(async (req, res) => {
+    if (!req.body.name) {
+        res.sendStatus(httpStatusCode.BAD_REQUEST);
+    } else {
+        let product = {
+            category: req.body.category,
+            name: req.body.name,
+            description: req.body.description,
+            amount: req.body.amount,
+            unit: req.body.unit,
+            calories: req.body.calories,
+            protein: req.body.protein,
+            carbs: req.body.carbs,
+            fats: req.body.fats,
+            sugar: req.body.sugar,
+            sodium: req.body.sodium
+        };
+        let newProduct = await productController.create(product);
+        res.json(newProduct);   
+    }    
 }));
 
 router.delete('/products', asyncMiddleware(async (req, res, next) => {

@@ -4,7 +4,7 @@ var asyncMiddleware = require('./../middleware/async');
 
 /* CONTROLLERS */
 
-const recipeController = require('./../recipe/controller');
+const recipeController = require('./../recipes/controller');
 
 /* ROUTES */
 
