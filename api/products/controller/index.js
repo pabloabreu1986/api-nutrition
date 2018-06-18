@@ -1,6 +1,8 @@
 'use strict';
 const httpStatusCode = require('http-status-codes');
-const ProductModel = require('../../models/product');
+const mongoose = require('mongoose');
+const ProductSquema = require('../../models/product')
+const ProductModel = mongoose.model('Product', ProductSquema);
 
 class ProductController {
     constructor() {}

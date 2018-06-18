@@ -1,6 +1,8 @@
 'use strict';
 const httpStatusCode = require('http-status-codes');
-const RecipeModel = require('../../models/recipe');
+const mongoose = require('mongoose');
+const ProductSquema = require('../../models/recipe')
+const RecipeModel = mongoose.model('Recipe', ProductSquema);
 
 class RecipeController {
     constructor() {}

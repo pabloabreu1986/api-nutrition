@@ -14,7 +14,7 @@ router.get('/recipes', asyncMiddleware(async (req, res, next) => {
     };
     let recipe = await recipeController.find(recipeToSearch);
     res.json({
-        mesage: 'Hola..',
+        mesage: 'Receta(s)...',
         recipe
     });
 }));
@@ -32,15 +32,15 @@ router.post('/recipes', asyncMiddleware(async (req, res, next) => {
         fats: req.body.fats,
         sugar: req.body.sugar,
         sodium: req.body.sodium,
-        pruducts: req.body.pruducts
+        products: req.body.products
     };
     let newRecipe = await recipeController.create(recipe);
     res.json(newRecipe);
 }));
 
-router.delete('/recipes', asyncMiddleware(async (req, res, next) => {
+router.delete('/recipes/:id', asyncMiddleware(async (req, res, next) => {
     let recipe = {
-        id: req.body._id
+        id: req.params.id
     };
     let deletedRecipe = await recipeController.delete(recipe);
     res.json(deletedRecipe);

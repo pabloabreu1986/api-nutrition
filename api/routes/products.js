@@ -16,7 +16,7 @@ router.get('/products', asyncMiddleware(async (req, res, next) => {
     };
     let product = await productController.find(productToSearch);
     res.json({
-        mesage: 'Hola..',
+        mesage: 'Producto(s)...',
         product
     });
 }));
@@ -43,9 +43,9 @@ router.post('/products', asyncMiddleware(async (req, res) => {
     }    
 }));
 
-router.delete('/products', asyncMiddleware(async (req, res, next) => {
+router.delete('/products/:id', asyncMiddleware(async (req, res, next) => {
     let product = {
-        id: req.body._id
+        id: req.params.id
     };
     let deletedProduct = await productController.delete(product);
     res.json(deletedProduct);
